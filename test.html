@@ -1,6 +1,6 @@
 <html>
   <head>
-     <script src="https://www.google.com/recaptcha/api.js?render=6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX"></script>
+     <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX"></script>
     <script>
         function onSubmit(token) {
             const form = document.getElementById('myForm');
@@ -14,8 +14,7 @@
       function onClick(e) {
           e.preventDefault();
           grecaptcha.enterprise.ready(async () => {
-            const token = await grecaptcha.enterprise.execute('6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX', {action: 'submit'});
-            onSubmit(token);
+            const token = await grecaptcha.enterprise.execute('6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX', {action: 'submit'}).then(onSubmit);
           });
       }
     </script>
