@@ -1,7 +1,34 @@
-  <label style="padding-bottom: 10px; display: block; font-size: 25px;" for="orgName">Start your 7-day free trial!</label>
+<html>
+  <head>
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        function onSubmit(token) {
+            const form = document.getElementById('myForm');
+            const formData = new FormData(form);
+            formData.append('g-recaptcha-response', token);
+            fetch('https://bridge.app.liveswitch.com/signup', {
+                method: 'POST',
+                body: formData
+            })
+        }
+
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6Lfayk4qAAAAAF5NFumn6rUsWFch4v3TYWT5xkgg', {action: 'submit'}).then(function(token) {
+                    onSubmit(token);
+                });
+            });
+        }
+    </script>
+  </head>
+ <body>
+   
+
+<label style="padding-bottom: 10px; display: block; font-size: 25px;" for="orgName">Start your 7-day free trial!</label>
   <br>
   <br>
-  <form class="FourteenFreeForm" action="https://testing.bridge.app.liveswitch.com/signup" method="POST">
+  <form class="FourteenFreeForm" id="myForm">
   <input type="hidden" id="isTrial" name="isTrial" value="true">
     <label style="padding-bottom: 10px; display: block; font-size: 14px;" for="orgName">Organization Name<span style="color:red;">*</span>     </label>
   <div class="input"><input name="orgName" required="" placeholder="Organization Name" type="text" class="hs-input invalid error" inputmode="text" value="" style="background-color: white; border-color: black;"></div>
@@ -15,6 +42,17 @@
       <div class="g-recaptcha" data-sitekey="6Lfayk4qAAAAAF5NFumn6rUsWFch4v3TYWT5xkgg"></div>
       <br/>
   <div> &nbsp; </div>
-  <input class="hs-button primary large" style="font-size: 20px; height: 60px; padding:20px " type="submit" value="Get Started!">
+   <button class="g-recaptcha hs-button primary large" 
+                data-sitekey="6Lfayk4qAAAAAF5NFumn6rUsWFch4v3TYWT5xkgg"
+                data-callback="onSubmit"
+                data-action="submit"
+                onclick="onClick(event)"
+                style="font-size: 20px; height: 60px; padding:20px">
+            Get Started!
+        </button>
   <input type="hidden" id="trialDurationDays" name="trialDurationDays" value="7">
 </form>
+    </body>
+</html>
+
+    
