@@ -11,15 +11,13 @@
                 body: formData
             })
         }
+      function onClick(e) {
+          e.preventDefault();
+          grecaptcha.enterprise.ready(async () => {
+            const token = await grecaptcha.enterprise.execute('6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX', {action: 'submit'});
+            onSubmit(token);
+          });
 
-        function onClick(e) {
-            e.preventDefault();
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX', {action: 'submit'}).then(function(token) {
-                    onSubmit(token);
-                });
-            });
-        }
     </script>
   </head>
  <body>
