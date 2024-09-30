@@ -6,7 +6,7 @@
             const form = document.getElementById('myForm');
             const formData = new FormData(form);
             formData.append('g-recaptcha-response', token);
-            fetch('https://bridge.app.liveswitch.com/signup', {
+            fetch('https://testing.bridge.app.liveswitch.com/signup', {
                 method: 'POST',
                 body: formData
             })
@@ -15,7 +15,7 @@
         function onClick(e) {
             e.preventDefault();
             grecaptcha.ready(function() {
-                grecaptcha.execute('6Lfayk4qAAAAAF5NFumn6rUsWFch4v3TYWT5xkgg', {action: 'submit'}).then(function(token) {
+                grecaptcha.execute('6LfmN1MqAAAAAIuWfNqiuzN_lsEKWbf5PLFlAEEX', {action: 'submit'}).then(function(token) {
                     onSubmit(token);
                 });
             });
